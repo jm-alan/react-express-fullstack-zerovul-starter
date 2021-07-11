@@ -9,13 +9,13 @@ router.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
   const mainIndex = resolve(__dirname, '../../frontend', 'build', 'index.html');
-  router.get('/', (req, res) => {
+  router.get('/', (_req, res) => {
     res.sendFile(mainIndex);
   });
 
   router.use(express.static(resolve('../frontend/build')));
 
-  router.get(/^(?!\/?api).*/, (req, res) => {
+  router.get(/^(?!\/?api).*/, (_req, res) => {
     res.sendFile(mainIndex);
   });
 }
