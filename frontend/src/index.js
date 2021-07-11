@@ -9,6 +9,7 @@ import configureStore from './store';
 import { SetMooring } from './store/modal';
 
 import './index.css';
+import Errors from './components/Errors';
 
 const store = configureStore();
 
@@ -22,6 +23,7 @@ function Root () {
 
   return (
     <BrowserRouter>
+      <Errors />
       <App />
       <Modal />
       <div ref={mooringRef} id='modal' />
