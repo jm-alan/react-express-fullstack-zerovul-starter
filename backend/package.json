@@ -15,11 +15,6 @@
       "js": "sucrase-node"
     }
   },
-  "eslintConfig": {
-    "rules": {
-      "no-extend-native": "off"
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -13,6 +13,11 @@
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
   },
+  "eslintConfig": {
+    "rules": {
+      "no-extend-native": "off"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
