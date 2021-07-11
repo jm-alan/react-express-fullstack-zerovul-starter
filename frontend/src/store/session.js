@@ -23,7 +23,7 @@ export const SignUp = (username, email, password) => async dispatch => {
 };
 
 export const LogOut = () => async dispatch => {
-  await csrfetch.delete('/api/users/');
+  await csrfetch.delete('/api/session/');
   dispatch(setSession());
 };
 

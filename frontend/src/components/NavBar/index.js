@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { SetModal } from '../../store/modal';
+import { LogOut } from '../../store/session';
 import { ShowModal } from '../../store/UX';
 
 import LoginForm from '../Auth/LoginForm';
@@ -21,6 +22,8 @@ export default function NavBar () {
     dispatch(ShowModal());
   };
 
+  const logOut = () => dispatch(LogOut());
+
   return (
     <nav>
       {user
@@ -32,7 +35,7 @@ export default function NavBar () {
             <Link to='/users/me/'>
               My Profile
             </Link>
-            <button>
+            <button onClick={logOut}>
               Log Out
             </button>
           </>
