@@ -1,0 +1,112 @@
+:root {
+  --player-theme: black;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+#audio-player-original {
+  display: none;
+}
+
+#audio-player-new {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 75px;
+  background-color: var(--player-theme);
+  border-radius: 10px;
+}
+
+#audio-player-new > div {
+  width: 100%;
+}
+
+#button-bar {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#seekbar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+}
+
+#timestamp-position-container {
+  color: white;
+  font-size: 15px;
+  height: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#seekbar-click-shroud {
+  position: absolute;
+  bottom: 0px;
+  cursor: pointer;
+  width: 100%;
+  height: 5px;
+  z-index: 999;
+}
+
+#seekbar-click-shroud.grabbed {
+  cursor: grabbing !important;
+}
+
+#seekbar-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 5px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  background-color: var(--player-theme);
+}
+
+#seekbar-inner {
+  height: 5px;
+  background-color: white;
+}
+
+#seekbar-knob {
+  position: relative;
+  right: 5px;
+  height: 10px;
+  min-width: 10px;
+  max-width: 10px;
+  border-radius: 50%;
+  background-color: white;
+  display: none;
+}
+
+#seekbar-click-shroud:hover + #seekbar-wrapper > #seekbar-knob {
+  display: block;
+}
+
+.player-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  height: 100%;
+  width: 20%;
+  color: white;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.player-button.disabled {
+  background-color: grey;
+}
