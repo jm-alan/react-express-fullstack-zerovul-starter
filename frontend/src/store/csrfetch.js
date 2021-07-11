@@ -12,6 +12,8 @@ class CsrfFetch {
         method: ''
       }
     ];
+
+    this.genericErrors = ['Sorry, something went wrong. Please refresh the page and try again.'];
   }
 
   captureDispatch (dispatch) {
@@ -37,7 +39,7 @@ class CsrfFetch {
       if (res.status > 400) throw await res.json();
       return await res.json();
     } catch ({ errors }) {
-      this.dispatch(SetErrors(errors));
+      this.dispatch(SetErrors(errors || this.genericErrors));
       return {};
     }
   }
