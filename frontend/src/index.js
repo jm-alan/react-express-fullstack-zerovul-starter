@@ -11,6 +11,7 @@ import csrfetch from './store/csrfetch';
 import { SetMooring } from './store/modal';
 
 import './index.css';
+import findCookie from './utils/findCookie';
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.dispatch = store.dispatch;
   window.csrfetch = csrfetch;
+  window.findCookie = findCookie;
 }
 
 function Root () {
