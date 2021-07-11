@@ -41,6 +41,9 @@ export default function SignupForm () {
         onChangeText={setRepeatPassword}
         value={repeatPassword}
       />
+      <button className='auth-button'>
+        Sign Up
+      </button>
     </Auth>
   );
 }

@@ -12,6 +12,7 @@ export default function LoginForm () {
 
   const onSubmit = e => {
     e.preventDefault();
+    console.log('login attempted');
     dispatch(LogIn(identification, password));
   };
 
@@ -27,6 +28,9 @@ export default function LoginForm () {
         onChangeText={setPassword}
         value={password}
       />
+      <button className='auth-button'>
+        Log In
+      </button>
     </Auth>
   );
 }
