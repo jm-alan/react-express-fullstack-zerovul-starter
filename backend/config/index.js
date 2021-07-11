@@ -5,10 +5,10 @@ config(resolve('../.env'));
 const {
   PORTS,
   PORT,
-  FROGGY: username,
-  FRESH: password,
-  KRISPY: database,
-  KREME: host,
+  DB_USER: username,
+  DB_PASS: password,
+  DB_NAME: database,
+  DB_HOST: host,
   SECRET: secret,
   EXPIRES: expiresIn,
   environment
