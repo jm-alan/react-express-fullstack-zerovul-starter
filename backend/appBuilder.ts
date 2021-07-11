@@ -17,37 +17,41 @@ interface AppObject {
   [app: string]: Express
 }
 
-export default function appBuilder (apps: AppObject, port: number | string) {
-  const app = express();
-  apps[port] = app;
-  app.use(morgan('dev'));
-  app.use(cookieParser());
-  app.use(express.urlencoded({ extended: false }));
-  app.use(express.json());
-  if (!isProduction) app.use(cors());
-  app.use(helmet({
-    contentSecurityPolicy: false
-  }));
-  app.use(csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction,
-      httpOnly: true
-    }
-  }));
+export default function appBuilder (ports: string[]) {
+  const apps = {};
+  for (const port of ports) {
+    const app = express();
+    apps[port] = app;
+    app.use(morgan('dev'));
+    app.use(cookieParser());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
+    if (!isProduction) app.use(cors());
+    app.use(helmet({
+      contentSecurityPolicy: false
+    }));
+    app.use(csurf({
+      cookie: {
+        secure: isProduction,
+        sameSite: isProduction,
+        httpOnly: true
+      }
+    }));
 
-  app.use(router);
+    app.use(router);
 
-  app.use((_req: Request, _res: Response, next: NextFunction) => {
-    const err = new RequestError(
-      'Resource Not Found',
-      'The requested resource couldn\'t be found.',
-      404
-    );
-    next(err);
-  });
+    app.use((_req, _res, next: NextFunction) => {
+      const err = new RequestError(
+        'Resource Not Found',
+        'The requested resource couldn\'t be found.',
+        404
+      );
+      next(err);
+    });
 
-  app.use(validationHandler);
+    app.use(validationHandler);
 
-  app.use(errorHandler);
+    app.use(errorHandler);
+  }
+  return apps;
 }
