@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 
 import App from './App';
+import Modal from './components/Modal';
 import configureStore from './store';
+import { SetMooring } from './store/modal';
 
 import './index.css';
 
 const store = configureStore();
 
+function Root () {
+  const dispatch = useDispatch();
+  const mooringRef = useRef(null);
+
+  useEffect(() => {
+    dispatch(SetMooring(mooringRef.current));
+  }, [dispatch]);
+
+  return (
+    <BrowserRouter>
+      <App />
+      <Modal />
+      <div ref={mooringRef} id='modal' />
+    </BrowserRouter>
+  );
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Root />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
