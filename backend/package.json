@@ -15,6 +15,11 @@
       "js": "sucrase-node"
     }
   },
+  "eslintConfig": {
+    "rules": {
+      "no-extend-native": "off"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -29,7 +34,6 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "express-validator": "^6.10.1",
-    "faker": "^5.5.3",
     "helmet": "^4.5.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",

@@ -23,7 +23,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "default-param-last": "off"
+      "default-param-last": "off",
+      "no-extend-native": "off"
     }
   },
   "browserslist": {
