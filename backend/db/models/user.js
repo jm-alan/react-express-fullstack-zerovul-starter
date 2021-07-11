@@ -18,14 +18,6 @@ module.exports = (sequelize, { DataTypes, fn }) => {
       return { id, firstName, username, email };
     }
 
-    async findPersonalByPk (id) {
-      return (await this.getPersonals({ where: { id } }))[0] ?? null;
-    }
-
-    async findCommunalByPk (id) {
-      return (await this.getCommunals({ where: { id } }))[0] ?? null;
-    }
-
     static async LogIn ({ identification, password }) {
       const errors = [];
       if (!identification) errors.push(new ValidationErrorItem('Please provide a username or email'));
@@ -46,28 +38,20 @@ module.exports = (sequelize, { DataTypes, fn }) => {
       return potentialUser;
     }
 
-    static async SignUp ({ firstName, username, email, password }) {
+    static async SignUp ({ username, email, password }) {
       const errors = [];
       if (await User.findOne({ where: { username } })) errors.push(new ValidationErrorItem('An account already exists with that username'));
       if (await User.findOne({ where: { email } })) errors.push(new ValidationErrorItem('An account already exists with that email'));
       if (errors.length) throw new ValidationError('Could not accept identification', errors);
-      const newUser = new User({ firstName, username, email, password });
+      const newUser = new User({ username, email, password });
       return (await newUser.save()).info;
     }
 
     static associate (models) {
-      [models.Personal, models.Item].forEach(model => {
-        User.hasMany(model, { foreignKey: 'ownerId' });
-      });
-      User.belongsToMany(models.Communal, {
-        through: models.RosterEntry,
-        foreignKey: 'userId',
-        otherKey: 'communalId'
-      });
+
     }
   }
   User.init({
-    firstName: DataTypes.STRING,
     username: {
       type: DataTypes.STRING,
       validate: {
