@@ -13,11 +13,8 @@ export default function App () {
   const loaded = useSelector(state => state.session.loaded);
 
   useEffect(() => {
-    csrfetch.restoreCSRF();
-  });
-
-  useEffect(() => {
     csrfetch.captureDispatch(dispatch);
+    csrfetch.restoreCSRF();
     dispatch(RestoreUser());
   }, [dispatch]);
 

@@ -1,3 +1,4 @@
+import findCookie from '../utils/findCookie';
 import { SetErrors } from './errors';
 
 class CsrfFetch {
@@ -21,6 +22,7 @@ class CsrfFetch {
   }
 
   __preFlight (opts = { url: '', params: null, body: null }, method) {
+    this.options[1].headers['XSRF-Token'] = findCookie('XSRF-TOKEN');
     if (method === 'GET') delete this.options[1].body;
     this.options[0] = opts.url;
     this.options[1] = { ...this.options[1], method };
@@ -61,8 +63,7 @@ class CsrfFetch {
   }
 
   async restoreCSRF () {
-    const { token } = await this.get('/api/csrf/restore/');
-    this.options[1].headers['XSRF-Token'] = token;
+    await this.get('/api/csrf/restore/');
   }
 }
 
