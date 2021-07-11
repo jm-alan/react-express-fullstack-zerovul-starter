@@ -13,8 +13,7 @@ export default function SignupForm () {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmit = () => {
     if (password === repeatPassword) dispatch(SignUp(username, email, password));
     else dispatch(SetErrors(['Passwords do not match']));
   };

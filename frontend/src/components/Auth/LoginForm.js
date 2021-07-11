@@ -10,8 +10,7 @@ export default function LoginForm () {
   const [identification, setIdentification] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmit = () => {
     console.log('login attempted');
     dispatch(LogIn(identification, password));
   };

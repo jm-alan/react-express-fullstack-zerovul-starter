@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TearDown } from '../../store/modal';
 import { HideModal } from '../../store/UX';
 
+import { ClearErrors } from '../../store/errors';
+
 export default function Auth ({ onSubmit, children }) {
   const dispatch = useDispatch();
 
@@ -12,9 +14,15 @@ export default function Auth ({ onSubmit, children }) {
     dispatch(HideModal());
   }
 
+  const wrappedSubmit = e => {
+    e.preventDefault();
+    dispatch(ClearErrors());
+    onSubmit();
+  };
+
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={wrappedSubmit}
       className='auth-form'
     >
       {children}
