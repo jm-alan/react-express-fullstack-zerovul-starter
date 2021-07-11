@@ -1,10 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SetModal } from '../../store/modal';
+import { ShowModal } from '../../store/UX';
+
+import LoginForm from '../Auth/LoginForm';
+import SignupForm from '../Auth/SignupForm';
 
 export default function NavBar () {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state.session.user);
+
+  const popLogin = () => {
+    dispatch(SetModal(LoginForm));
+    dispatch(ShowModal());
+  };
+
+  const popSignup = () => {
+    dispatch(SetModal(SignupForm));
+    dispatch(ShowModal());
+  };
 
   return (
     <nav>
@@ -24,10 +39,10 @@ export default function NavBar () {
           )
         : (
           <>
-            <button>
+            <button onClick={popLogin}>
               Log In
             </button>
-            <button>
+            <button onClick={popSignup}>
               Sign Up
             </button>
           </>
