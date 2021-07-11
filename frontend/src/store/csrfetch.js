@@ -38,6 +38,7 @@ class CsrfFetch {
       return await res.json();
     } catch ({ errors }) {
       this.dispatch(SetErrors(errors));
+      return {};
     }
   }
 
