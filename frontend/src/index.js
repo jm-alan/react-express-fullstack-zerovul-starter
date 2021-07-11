@@ -6,12 +6,19 @@ import { Provider, useDispatch } from 'react-redux';
 import App from './App';
 import Modal from './components/Modal';
 import configureStore from './store';
+import Errors from './components/Errors';
+import csrfetch from './store/csrfetch';
 import { SetMooring } from './store/modal';
 
 import './index.css';
-import Errors from './components/Errors';
 
 const store = configureStore();
+
+if (process.env.NODE_ENV !== 'production') {
+  window.store = store;
+  window.dispatch = store.dispatch;
+  window.csrfetch = csrfetch;
+}
 
 function Root () {
   const dispatch = useDispatch();
