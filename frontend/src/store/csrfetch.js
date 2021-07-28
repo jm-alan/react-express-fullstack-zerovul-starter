@@ -19,7 +19,7 @@ export default {
     this.dispatch = dispatch;
   },
 
-  __preflight (opts = { url: '', params: null, body: null }, method) {
+  __preFlight (opts = { url: '', params: null, body: null }, method) {
     this.options[1].headers['XSRF-Token'] = findCookie('XSRF-TOKEN');
     if (method === 'GET') delete this.options[1].body;
     this.options[0] = opts.url;
