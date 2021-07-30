@@ -51,6 +51,7 @@ module.exports = (sequelize, { DataTypes, fn }) => {
 
     }
   }
+
   User.init({
     username: {
       type: DataTypes.STRING,
