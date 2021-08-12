@@ -38,9 +38,14 @@ export default function appBuilder (ports: string[]) {
       }
     }));
 
+    app.use((req, res, next) => {
+      if (isProduction && req.headers['x-forwarded-proto'] !== 'https') res.redirect(`https://${req.headers.host}${req.url}`)
+      else next();
+    });
+
     app.use(router);
 
-    app.use((_req, _res, next: NextFunction) => {
+    app.use((_req, _res, next) => {
       const err = new RequestError(
         'Resource Not Found',
         'The requested resource couldn\'t be found.',
