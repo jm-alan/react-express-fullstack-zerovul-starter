@@ -39,6 +39,7 @@ export default function appBuilder (ports: string[]) {
     }));
 
     app.use((req, res, next) => {
+      console.log('PROTOCOL=================================', req.headers['x-forwarded-proto'])
       if (isProduction && req.headers['x-forwarded-proto'] !== 'https') res.redirect(`https://${req.get('host')}${req.originalUrl}`)
       else next();
     });
