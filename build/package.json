@@ -2,13 +2,11 @@
   "name": "dock-dash",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "scripts": {
-    "sequelize": "sequelize",
-    "start": "node"
+    "sequelize": "sequelize"
   },
   "dependencies": {
     "express": "^4.17.1",
