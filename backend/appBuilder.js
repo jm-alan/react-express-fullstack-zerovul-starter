@@ -1,6 +1,4 @@
 import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
 import csurf from 'csurf';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
@@ -18,11 +16,13 @@ export default function appBuilder (ports) {
   for (const port of ports) {
     const app = express();
     apps[port] = app;
-    app.use(morgan('dev'));
+    if (!isProduction) {
+      app.use(require('cors')());
+      app.use(require('morgan')('dev'));
+    }
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
-    if (!isProduction) app.use(cors());
     app.use(helmet({
       contentSecurityPolicy: false
     }));

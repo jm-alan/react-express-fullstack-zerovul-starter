@@ -1,6 +1,5 @@
 const { resolve } = require('path');
-const { config } = require('dotenv');
-config(resolve('../.env'));
+if (process.env.NODE_ENV === 'development') require('dotenv').config(resolve('../.env'));
 
 const {
   PORTS,

@@ -16,9 +16,12 @@ module.exports = {
     __filename: false
   },
   externals: {
-    sequelize: 'commonjs sequelize',
     'socket.io': 'commonjs socket.io',
-    express: 'commonjs express'
+    sequelize: 'commonjs sequelize',
+    express: 'commonjs express',
+    dotenv: 'commonjs dotenv',
+    cors: 'commonjs cors',
+    morgan: 'commonjs morgan'
   },
   module: {
     rules: [
