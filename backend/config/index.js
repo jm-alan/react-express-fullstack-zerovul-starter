@@ -11,7 +11,7 @@ const {
   DB_HOST: host,
   SECRET: secret,
   EXPIRES: expiresIn,
-  environment = 'development'
+  NODE_ENV: environment = 'development'
 } = process.env;
 
 module.exports = {
