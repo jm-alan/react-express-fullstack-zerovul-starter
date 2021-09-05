@@ -7,7 +7,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "sequelize": "sequelize"
+    "sequelize": "sequelize",
+    "start": "node"
   },
   "dependencies": {
     "express": "^4.17.1",
