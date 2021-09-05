@@ -4,7 +4,8 @@ const {
     password,
     database,
     host
-  }
+  },
+  environment
 } = require('./');
 
 module.exports = {
@@ -29,4 +30,4 @@ module.exports = {
       }
     }
   }
-};
+}[environment];

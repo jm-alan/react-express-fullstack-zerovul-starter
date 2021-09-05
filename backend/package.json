@@ -8,7 +8,8 @@
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
     "start:development": "nodemon -r sucrase/register ./bin/www",
-    "start:production": "node -r sucrase/register ./bin/www"
+    "start:production": "node -r sucrase/register ./bin/www",
+    "build": "webpack --mode production"
   },
   "nodemonConfig": {
     "execMap": {
@@ -19,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sucrase/webpack-loader": "^2.0.0",
     "@types/express": "^4.17.12",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -37,7 +39,9 @@
     "pg": "^8.6.0",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
-    "sucrase": "^3.18.1"
+    "sucrase": "^3.18.1",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

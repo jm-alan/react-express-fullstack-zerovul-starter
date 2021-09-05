@@ -4,11 +4,11 @@
   "engines": {
     "node": ">=16.x"
   },
-  "description": "Barebones full stack webapp starter with 0 frotnend vulnerabilities as of July 2021. React/Redux/Express/Sequelize",
+  "description": "Full stack webapp starter with 0 frotnend vulnerabilities as of August 2021. React/Redux/Express/Sequelize",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "npm run build --prefix frontend",
-    "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",
+    "heroku-postbuild": "npm run build --prefix backend && npm run build --prefix frontend && mv ./frontend/build ./build/app && mv ./backend/build/main.js ./build && rm -rf ./backend && rm -rf ./frontend",
+    "install": "npm --prefix backend install backend && npm --prefix frontend install frontend && npm --prefix build install build",
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
