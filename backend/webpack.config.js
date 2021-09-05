@@ -2,7 +2,7 @@ const { resolve } = require('path');
 
 module.exports = {
   entry: {
-    main: './bin/www'
+    index: './bin/www'
   },
   output: {
     path: resolve(__dirname, 'build'),

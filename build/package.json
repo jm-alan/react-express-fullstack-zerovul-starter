@@ -2,7 +2,7 @@
   "name": "dock-dash",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
