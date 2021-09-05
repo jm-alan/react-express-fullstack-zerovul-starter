@@ -1,4 +1,4 @@
-import express, { Express, NextFunction } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import csurf from 'csurf';
@@ -6,18 +6,14 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 
 import router from './router';
-import { RequestError } from './RequestError'
+import { RequestError } from './RequestError';
 import { environment } from './config';
-import validationHandler from './utils/validationHandler'
+import validationHandler from './utils/validationHandler';
 import errorHandler from './utils/errorHandler';
 
 const isProduction = environment === 'production';
 
-interface AppObject {
-  [app: string]: Express
-}
-
-export default function appBuilder (ports: string[]) {
+export default function appBuilder (ports) {
   const apps = {};
   for (const port of ports) {
     const app = express();
@@ -40,7 +36,7 @@ export default function appBuilder (ports: string[]) {
 
     app.use((req, res, next) => {
       if (isProduction && req.headers['x-forwarded-proto'] !== 'https') {
-        res.redirect(`https://${req.get('host')}${req.originalUrl}`)
+        res.redirect(`https://${req.get('host')}${req.originalUrl}`);
       } else next();
     });
 

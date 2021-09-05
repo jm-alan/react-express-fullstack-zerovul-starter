@@ -1,11 +1,7 @@
-import util from 'util'
+import util from 'util';
 
 export class RequestError extends Error {
-  title: string;
-  errors: string[];
-  status: number;
-
-  constructor (title: string, message: string, status: number) {
+  constructor (title, message, status) {
     super(message);
     this.title = title;
     this.errors = [];
@@ -14,12 +10,7 @@ export class RequestError extends Error {
 }
 
 export class ExtendedValidationError {
-  title: string;
-  message: string;
-  errors: string[];
-  status: number
-
-  constructor (title: string, message: string) {
+  constructor (title, message) {
     this.title = title;
     this.message = message;
     this.status = 401;
@@ -28,6 +19,6 @@ export class ExtendedValidationError {
   [util.inspect.custom] (_depth, _opts) {
     let out = '';
     for (const error of this.errors) out += `\n    ${error}`;
-    return `--------------------------------------------\n${this.title}\n  ${this.message}${out}`
+    return `--------------------------------------------\n${this.title}\n  ${this.message}${out}`;
   }
 }
