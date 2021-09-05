@@ -8,8 +8,8 @@ const router = Router();
 router.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  router.use(express.static(resolve('app')));
-  router.get(/^(((?!\/?api).*)|(\/))$/, (_req, res) => res.sendFile(resolve('app', 'index.html')));
+  router.use(express.static(resolve(__dirname, 'app')));
+  router.get(/^(((?!\/?api).*)|(\/))$/, (_req, res) => res.sendFile(resolve(__dirname, 'app', 'index.html')));
 }
 
 export default router;
