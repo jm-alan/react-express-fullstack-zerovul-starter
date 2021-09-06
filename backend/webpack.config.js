@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: {
     index: './bin/www'
   },
